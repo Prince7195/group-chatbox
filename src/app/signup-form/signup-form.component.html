@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="signUpCard">
+    <form #signupForm="ngForm" >
+      <h2 class="heading">Sign Up</h2>
+      <label class="label">Email</label>
+      <input type="email"
+       name="email" 
+       pattern="^[\w.+\-]+@gchat\.com$"
+       placeholder="Enter your email address"
+       [(ngModel)]="email"
+       #name="ngModel"
+       maxlength="60"
+       class="formInput" required>
+       <span class="errorTxt" *ngIf="name.invalid && (name.dirty || name.touched); else default" >Ex: example@gchat.com</span>
+      <ng-template #default>
+        <span class="exampleTxt">Ex: example@gchat.com</span>
+      </ng-template>
+       <br>
+       <br>
+      <label class="label">Password</label>
+      <input type="password"
+       name="password"
+       placeholder="Choose a password" 
+       [(ngModel)]="password"
+       (ngModelChange)="chechPwdLen()"
+       [ngModelOptions]="{updateOn: 'blur'}" 
+       class="formInput"
+       required>
+      <span [class]="pwdClass">maximum: 6 character</span>
+      <br>
+      <br>
+      <label class="label">Display Name</label>
+      <input type="text"
+       name="displayName" 
+       placeholder="Enter a display name" 
+       [(ngModel)]="displayName" 
+       maxlength="12" 
+       class="formInput"
+       required>
+       <button
+        [disabled]="!signupForm.form.valid"
+        type="submit"
+        (click)="signUp()"
+        class="btn"
+        id="btn-signUp"
+        >
+         Sign Up
+       </button>
+    </form>
+  </div>
+</div>
